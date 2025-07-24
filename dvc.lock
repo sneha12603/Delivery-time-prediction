@@ -27,6 +27,10 @@ stages:
       hash: md5
       md5: 6a206f91a625b57767aef093b8578724
       size: 3317
+    params:
+      params.yaml:
+        Data_Preparation.random_state: 42
+        Data_Preparation.test_size: 0.25
     outs:
     - path: data/interim/test.csv
       hash: md5
@@ -49,8 +53,8 @@ stages:
       size: 3379042
     - path: src/features/data_preprocessing.py
       hash: md5
-      md5: 8064e274668ef9a0c41e6a9305f3cce3
-      size: 6352
+      md5: 645a7e016928d863194f4553ffc7d291
+      size: 6351
     outs:
     - path: data/processed/test_trans.csv
       hash: md5
@@ -60,7 +64,52 @@ stages:
       hash: md5
       md5: 607d3fb5ca7957bc02695329fe4322bd
       size: 4060457
-    - path: models/preprocessor.joblib
+    - path: model/preprocessor.joblib
       hash: md5
       md5: 6ceb086cc3c7660358a6ef6e9a798113
       size: 7243
+  train:
+    cmd: python src/models/train.py
+    deps:
+    - path: data/processed/train_trans.csv
+      hash: md5
+      md5: 607d3fb5ca7957bc02695329fe4322bd
+      size: 4060457
+    - path: src/models/train.py
+      hash: md5
+      md5: 30b60c09101b2bd80b62ded620f01bb6
+      size: 4631
+    params:
+      params.yaml:
+        Train.LightGBM:
+          n_estimators: 32
+          max_depth: 38
+          learning_rate: 0.19180137911248882
+          subsample: 0.7071645112302646
+          min_child_weight: 7
+          min_split_gain: 0.005365828476410886
+          reg_lambda: 8.308142160805943
+          n_jobs: -1
+        Train.Random_Forest:
+          n_estimators: 150
+          criterion: squared_error
+          max_depth: 19
+          max_features:
+          min_samples_split: 2
+          min_samples_leaf: 5
+          max_samples: 0.7106001839374338
+          verbose: 1
+          n_jobs: -1
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: c080274571722b558f29ffc9129a66d6
+      size: 48642360
+    - path: models/power_transformer.joblib
+      hash: md5
+      md5: 1ab77064cac2c4f5f51577e221e15911
+      size: 144
+    - path: models/stacking_regressor.joblib
+      hash: md5
+      md5: f51a13aee9eaf23d160c5374f22ec385
+      size: 48633658
