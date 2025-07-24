@@ -53,8 +53,8 @@ stages:
       size: 3379042
     - path: src/features/data_preprocessing.py
       hash: md5
-      md5: 645a7e016928d863194f4553ffc7d291
-      size: 6351
+      md5: 8064e274668ef9a0c41e6a9305f3cce3
+      size: 6352
     outs:
     - path: data/processed/test_trans.csv
       hash: md5
@@ -64,7 +64,7 @@ stages:
       hash: md5
       md5: 607d3fb5ca7957bc02695329fe4322bd
       size: 4060457
-    - path: model/preprocessor.joblib
+    - path: models/preprocessor.joblib
       hash: md5
       md5: 6ceb086cc3c7660358a6ef6e9a798113
       size: 7243

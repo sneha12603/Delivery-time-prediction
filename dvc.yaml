@@ -28,7 +28,7 @@ stages:
     outs:
     - data/processed/train_trans.csv
     - data/processed/test_trans.csv
-    - model/preprocessor.joblib
+    - models/preprocessor.joblib
   
   train:
     cmd: python src/models/train.py

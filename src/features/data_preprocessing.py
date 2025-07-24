@@ -168,7 +168,7 @@ if __name__ == "__main__":
     #transformer name
     transformer_filename = "preprocessor.joblib"
     #directory to save transformers
-    transformer_save_dir = root_path / "model"
+    transformer_save_dir = root_path / "models"
     transformer_save_dir.mkdir(exist_ok=True)
     #save the transformer
     save_transformer(transformer=preprocessor,
