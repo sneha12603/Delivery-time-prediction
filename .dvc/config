@@ -1,4 +1,6 @@
 [core]
-    remote = localremote
+    remote = myremote
 ['remote "localremote"']
     url = C:/Users/Sneha Jain/dvc-storage
+['remote "myremote"']
+    url = s3://delivery-time-pred-project-bucket/path
