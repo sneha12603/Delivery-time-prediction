@@ -77,8 +77,8 @@ stages:
       size: 4063498
     - path: src/models/train.py
       hash: md5
-      md5: 30b60c09101b2bd80b62ded620f01bb6
-      size: 4631
+      md5: f4950c208724b2cc602fe43b12b192bf
+      size: 2612
     params:
       params.yaml:
         Train.LightGBM:
@@ -103,16 +103,12 @@ stages:
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: 18bd11fb9d022f6813b0f91f0934c86b
-      size: 48640264
-    - path: models/power_transformer.joblib
-      hash: md5
-      md5: 1ab77064cac2c4f5f51577e221e15911
-      size: 144
+      md5: 30e36623fb613406ace9815da242739d
+      size: 48678984
     - path: models/stacking_regressor.joblib
       hash: md5
-      md5: ec7e9e82c3ac60e8790195b49c4ea573
-      size: 48631562
+      md5: 6c4b46c536c53fa237e214504eefdb22
+      size: 1544
   evaluation:
     cmd: python src/models/evaluation.py
     deps:
@@ -126,8 +122,8 @@ stages:
       size: 4063498
     - path: models/model.joblib
       hash: md5
-      md5: 18bd11fb9d022f6813b0f91f0934c86b
-      size: 48640264
+      md5: 30e36623fb613406ace9815da242739d
+      size: 48678984
     - path: src/models/evaluation.py
       hash: md5
       md5: 0f560d7dbbcdba07c8f5c9fe67eb8bbd
@@ -135,11 +131,11 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: ed48003175ed6bc1e7dda4185d48232b
-      size: 190
+      md5: ccbba1815b1fee3f942c2d4614397d8b
+      size: 192
     - path: run_information.json
       hash: md5
-      md5: 1366ad5b7ba89699f378600228ad8086
+      md5: 8fe239bf7e4c4a842a40d0b479fc42cf
       size: 220
   register_model:
     cmd: python src/models/register_model.py
