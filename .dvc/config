@@ -1,5 +1,6 @@
 [core]
     remote = myremote
+    autostage = true
 ['remote "localremote"']
     url = C:/Users/Sneha Jain/dvc-storage
 ['remote "myremote"']
