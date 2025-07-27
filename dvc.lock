@@ -130,16 +130,16 @@ stages:
       size: 48640264
     - path: src/models/evaluation.py
       hash: md5
-      md5: 2c2199ea38444846a09a4cffd9e19cea
-      size: 5347
+      md5: 0f560d7dbbcdba07c8f5c9fe67eb8bbd
+      size: 5710
     outs:
     - path: metrics.json
       hash: md5
-      md5: 7d060d5a8975b53f4344f8c4dcc4ca00
-      size: 193
+      md5: ed48003175ed6bc1e7dda4185d48232b
+      size: 190
     - path: run_information.json
       hash: md5
-      md5: 54af65a1fe2ea5ff0c8fc97d8fccf9fc
+      md5: 1366ad5b7ba89699f378600228ad8086
       size: 220
   register_model:
     cmd: python src/models/register_model.py

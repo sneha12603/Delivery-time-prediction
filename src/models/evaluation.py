@@ -18,7 +18,7 @@ mlflow.set_experiment("DVC Pipeline")
 
 TARGET = "time_taken"
 
-# logger setup
+# Logger setup
 logger = logging.getLogger("model_evaluation")
 logger.setLevel(logging.INFO)
 handler = logging.StreamHandler()
@@ -31,7 +31,7 @@ def load_data(data_path: Path) -> pd.DataFrame:
     try:
         return pd.read_csv(data_path)
     except FileNotFoundError:
-        logger.error("The file to load does not exist")
+        logger.error(f"File not found: {data_path}")
         return pd.DataFrame()
 
 def make_X_and_y(data: pd.DataFrame, target_column: str):
@@ -74,9 +74,17 @@ if __name__ == "__main__":
     model = load_model(model_path)
     logger.info("Model loaded successfully")
 
+    # Load and log parameters
+    all_params = load_params(params_path)
+    train_params = all_params.get("Train", {})
+
     # Predictions
-    y_train_pred = model.predict(X_train)
-    y_test_pred = model.predict(X_test)
+    try:
+        y_train_pred = model.predict(X_train)
+        y_test_pred = model.predict(X_test)
+    except Exception as e:
+        logger.error(f"Prediction failed: {e}")
+        raise
 
     train_mae = mean_absolute_error(y_train, y_train_pred)
     test_mae = mean_absolute_error(y_test, y_test_pred)
@@ -96,13 +104,16 @@ if __name__ == "__main__":
 
     with mlflow.start_run() as run:
         mlflow.set_tag("model", "Food Delivery Time Regressor")
+        mlflow.set_tag("developer", "sneha12603")
+        mlflow.set_tag("data_version", "v1.0")
 
-        # Log model params
+        # Log hyperparameters
         mlflow.log_params(model.get_params())
+        mlflow.log_params(train_params)
 
         # Log metrics
         mlflow.log_metrics(metrics_dict)
-        mlflow.log_metrics({f"CV_{i}": -score for i, score in enumerate(cv_scores)})
+        mlflow.log_metrics({f"cv_fold_{i}": -score for i, score in enumerate(cv_scores)})
 
         # Inputs
         train_data_input = mlflow.data.from_pandas(train_data, targets=TARGET)
@@ -125,7 +136,7 @@ if __name__ == "__main__":
         except Exception as e:
             logger.warning(f"Could not log model due to: {e}")
 
-        # Log artifacts
+        # Log additional artifacts
         for filename in ["stacking_regressor.joblib", "power_transformer.joblib", "preprocessor.joblib"]:
             path = root_path / "models" / filename
             if path.exists():
@@ -133,7 +144,7 @@ if __name__ == "__main__":
 
         artifact_uri = mlflow.get_artifact_uri()
 
-        # ✅ Register model in MLflow registry
+        # Register model
         try:
             mlflow.register_model(
                 model_uri=f"{artifact_uri}/delivery_time_pred_model",
@@ -142,7 +153,7 @@ if __name__ == "__main__":
         except Exception as e:
             logger.warning(f"Model registration failed: {e}")
 
-    # ✅ Save metadata
+    # Save metadata
     save_model_info(
         save_json_path=root_path / "run_information.json",
         run_id=run.info.run_id,
@@ -150,8 +161,8 @@ if __name__ == "__main__":
         model_name="delivery_time_pred_model"
     )
 
-    # ✅ Save metrics to file
+    # Save metrics to file
     with open(root_path / "metrics.json", "w") as f:
         json.dump(metrics_dict, f, indent=4)
 
-    logger.info("Model evaluation, logging, and registration complete")
+    logger.info("✅ Model evaluation, logging, and registration complete")
