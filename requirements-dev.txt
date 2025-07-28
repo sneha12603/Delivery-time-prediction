@@ -7,3 +7,10 @@ dvc
 lightgbm
 joblib
 dvc[s3]
+dvc[dagsHub]
+boto3
+pytest
+pre-commit
+flake8
+black
+isort
