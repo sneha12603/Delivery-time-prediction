@@ -1,0 +1,2 @@
+ID,Delivery_person_ID,Delivery_person_Age,Delivery_person_Ratings,Restaurant_latitude,Restaurant_longitude,Delivery_location_latitude,Delivery_location_longitude,Order_Date,Time_Orderd,Time_Order_picked,Weatherconditions,Road_traffic_density,Vehicle_condition,Type_of_order,Type_of_vehicle,Multiple_deliveries,Festival,City,predicted_delivery_time
+1,RESDEL123,29,4.8,12.9715987,77.5945627,12.9352,77.6146,12/03/2022,12:30,12:45,Fog,High,2,Snack,Bike,1,No,Urban,22.930839510654714
