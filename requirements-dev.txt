@@ -1,16 +1,4 @@
-# Core packages
-numpy
-pandas
-scikit-learn
-lightgbm
-joblib
-boto3
-
-# Experiment tracking and data versioning
-mlflow
-dagshub
-dvc[s3]
-dvc[dagsHub]
+-r requirements.txt
 
 # Testing and linting
 pytest
@@ -18,3 +6,4 @@ pre-commit
 flake8
 black
 isort
+coverage

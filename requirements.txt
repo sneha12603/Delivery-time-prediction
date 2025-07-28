@@ -1,10 +1,17 @@
-# local package
--e .
+# Core packages
+numpy
+pandas
+scikit-learn
+lightgbm
+joblib
+boto3
 
-# external requirements
+# Experiment tracking and data versioning
+mlflow
+dagshub
+dvc[s3]
+dvc[dagsHub]
+
+# CLI tools used by your app
 click
-Sphinx
-coverage
-awscli
-flake8
 python-dotenv>=0.5.1
