@@ -3,7 +3,7 @@ name: Full CI-CD Pipeline
 on:
   push:
     branches:
-      - master  # or 'main'
+      - master  # Change to 'main' if your branch is named that
 
 jobs:
   build-test-deploy:
