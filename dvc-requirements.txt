@@ -1,6 +1,6 @@
 dvc[s3,dagshub]==3.48.4
 
 # Use versions compatible with aiobotocore (required by dvc[s3])
-botocore==1.29.0
+botocore==1.29.21
 boto3==1.26.21
 s3transfer==0.6.0
