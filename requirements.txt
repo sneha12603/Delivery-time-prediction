@@ -4,7 +4,7 @@ pandas
 scikit-learn
 lightgbm
 joblib
-boto3
+boto3>=1.26.0
 
 # Experiment tracking and data versioning
 mlflow

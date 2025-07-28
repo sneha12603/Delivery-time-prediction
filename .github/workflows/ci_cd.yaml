@@ -25,10 +25,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install DVC Separately
-        timeout-minutes: 15
+      - name: Install DVC (Pinned)
+        timeout-minutes: 10
         run: |
-          pip install --prefer-binary 'dvc[s3]' 'dvc[dagsHub]'
+          pip install --upgrade pip
+          pip install -r dvc-requirements.txt
+
 
       - name: Install Dev Dependencies
         timeout-minutes: 10
