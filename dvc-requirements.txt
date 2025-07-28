@@ -1,0 +1,5 @@
+# dvc-requirements.txt
+dvc[s3]==3.48.4
+
+dvc[s3]==3.48.4
+dvc[dagsHub]==3.48.4
