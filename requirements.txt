@@ -9,8 +9,7 @@ boto3
 # Experiment tracking and data versioning
 mlflow
 dagshub
-dvc[s3]
-dvc[dagsHub]
+
 
 # CLI tools used by your app
 click
