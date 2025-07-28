@@ -19,10 +19,16 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install Dependencies
+      - name: Install Core Dependencies
+        timeout-minutes: 5
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
+          pip install --no-cache-dir -r requirements-dev.txt
+
+      - name: Install DVC and Pytest
+        timeout-minutes: 5
+        run: |
+          pip install --no-cache-dir 'dvc[s3]' 'dvc[dagsHub]' pytest
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
