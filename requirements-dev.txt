@@ -1,14 +1,18 @@
+# Core packages
 numpy
 pandas
 scikit-learn
-mlflow
-dagshub
-dvc
 lightgbm
 joblib
+boto3
+
+# Experiment tracking and data versioning
+mlflow
+dagshub
 dvc[s3]
 dvc[dagsHub]
-boto3
+
+# Testing and linting
 pytest
 pre-commit
 flake8

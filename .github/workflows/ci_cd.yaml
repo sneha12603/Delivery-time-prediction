@@ -3,7 +3,7 @@ name: Full CI-CD Pipeline
 on:
   push:
     branches:
-      - master  # or 'main'
+      - master  # Change to 'main' if your default branch is main
 
 jobs:
   build-test-deploy:
@@ -33,9 +33,6 @@ jobs:
           aws-region: us-east-1
 
       - name: DVC Pull Data & Models
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           dvc pull
 
