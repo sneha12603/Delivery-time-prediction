@@ -23,7 +23,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
-          pip install 'dvc[s3]' 'dvc[dagsHub]' pytest
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
